@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#060708" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>GBT Yönetim</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/admin.ts"></script>
+  </head>
+  <body>
+    <header class="bar">
+      <a class="logo" href="/">
+        <img src="/favicon.svg" alt="" width="26" height="26" />
+        <span>GBT <small>Yönetim</small></span>
+      </a>
+      <button type="button" class="btn btn--ghost btn--sm" id="logout" hidden>Çıkış</button>
+    </header>
+
+    <main class="wrap">
+      <!-- Giriş -->
+      <section id="login-view" class="login" hidden>
+        <form id="login-form" class="panel">
+          <h1>Admin girişi</h1>
+          <p class="muted">Öneri kayıtlarını yalnızca topluluk yöneticileri görebilir.</p>
+          <label for="password">Şifre</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <button type="submit" class="btn btn--gold">Giriş yap</button>
+          <p id="login-error" class="error" role="alert"></p>
+        </form>
+      </section>
+
+      <!-- Panel -->
+      <div id="dash-view" hidden>
+        <!-- Ziyaretçiler -->
+        <section class="block">
+          <div class="block__head">
+            <h2>Ziyaretçiler</h2>
+            <button type="button" class="btn btn--ghost btn--sm" id="reset-visits">Sayaçları sıfırla</button>
+          </div>
+          <p class="muted block__intro">
+            Kişisel veri tutulmaz: IP, çerez veya isim yok. Her tarayıcı sekmesi bir ziyaret sayılır.
+            QR ile geleni ayırmak için QR kod adresi <code>?k=qr</code> ile bitmeli.
+          </p>
+
+          <div class="tiles">
+            <article class="panel stat">
+              <p class="stat__label">Toplam ziyaret</p>
+              <p class="stat__value" id="v-total">0</p>
+              <p class="stat__sub" id="v-today">Bugün 0</p>
+            </article>
+            <article class="panel stat">
+              <p class="stat__label">QR okutarak gelen</p>
+              <p class="stat__value" id="v-qr">0</p>
+              <p class="stat__sub" id="v-qr-share">—</p>
+            </article>
+            <article class="panel stat">
+              <p class="stat__label">Sona kadar kaydıran</p>
+              <p class="stat__value" id="v-complete">0</p>
+              <p class="stat__sub" id="v-complete-share">—</p>
+            </article>
+            <article class="panel stat">
+              <p class="stat__label">Telefondan gelen</p>
+              <p class="stat__value" id="v-mobile">0</p>
+              <p class="stat__sub" id="v-mobile-share">—</p>
+            </article>
+          </div>
+
+          <div class="grid">
+            <article class="panel">
+              <h3>Kaydırma hunisi</h3>
+              <p class="muted small">Her bölüme ulaşan ziyaretçi sayısı ve toplam ziyarete oranı</p>
+              <ol id="funnel" class="bars bars--wide"></ol>
+            </article>
+            <article class="panel">
+              <h3>Tıklamalar</h3>
+              <p class="muted small">Bu eylemi en az bir kez yapan ziyaretçi</p>
+              <ol id="clicks" class="bars"></ol>
+              <dl class="facts">
+                <div><dt>Dil</dt><dd id="v-lang">—</dd></div>
+                <div><dt>Kaynak</dt><dd id="v-sources">—</dd></div>
+              </dl>
+            </article>
+          </div>
+        </section>
+
+        <!-- Öneriler -->
+        <section class="block">
+          <div class="block__head">
+            <h2>Öneriler</h2>
+          </div>
+          <div class="grid">
+            <article class="panel stat">
+              <p class="stat__label">Toplam öneri</p>
+              <p class="stat__value" id="stat-total">0</p>
+              <p class="stat__sub" id="stat-today">Bugün 0</p>
+            </article>
+            <article class="panel topics">
+              <h3>En çok istenen konular</h3>
+              <ol id="topic-bars" class="bars"></ol>
+              <p id="topic-empty" class="muted">Henüz konu seçimi yok.</p>
+            </article>
+          </div>
+
+          <div class="list-head">
+            <label class="sr-only" for="search">Önerilerde ara</label>
+            <input id="search" type="search" placeholder="Önerilerde ara…" />
+            <div class="list-tools">
+              <button type="button" class="btn btn--ghost btn--sm" id="refresh">Yenile</button>
+              <a class="btn btn--ghost btn--sm" href="/api/admin/suggestions.csv" download>CSV indir</a>
+            </div>
+          </div>
+          <p id="list-empty" class="muted empty" hidden>Henüz öneri yok. Stand başladığında burada görünecek.</p>
+          <p id="list-more" class="muted list-more" hidden></p>
+          <ul id="list" class="list"></ul>
+        </section>
+
+        <!-- QR kod ve afiş -->
+        <section class="block">
+          <div class="block__head">
+            <h2>QR kod ve stant afişi</h2>
+          </div>
+          <article class="panel qr">
+            <div class="qr__form">
+              <label for="qr-base">Site adresi</label>
+              <input id="qr-base" type="url" inputmode="url" spellcheck="false" />
+              <p class="muted small">
+                Panel hangi adresten açıldıysa o gelir. Domain gelince paneli domain üzerinden açmanız yeterli.
+              </p>
+
+              <label for="qr-source">Kaynak etiketi</label>
+              <input id="qr-source" type="text" value="qr" maxlength="24" spellcheck="false" />
+              <p class="muted small">
+                Ziyaretçiler bölümünde “Kaynak” satırında bu adla sayılır. Stant afişi için <code>qr</code> bırakın;
+                farklı yerler için ayrı etiket verin (ör. <code>brosur</code>, <code>sunum</code>).
+              </p>
+
+              <p class="qr__url">QR’ın açacağı adres: <code id="qr-url"></code></p>
+              <p id="qr-warning" class="qr__warning" role="status" hidden></p>
+
+              <div class="qr__actions">
+                <button type="button" class="btn btn--gold btn--sm" id="qr-poster">A4 afişi aç ve yazdır</button>
+                <button type="button" class="btn btn--ghost btn--sm" id="qr-png">QR indir (PNG)</button>
+                <button type="button" class="btn btn--ghost btn--sm" id="qr-svg">QR indir (SVG)</button>
+              </div>
+            </div>
+            <div class="qr__preview" id="qr-preview" aria-label="QR kod önizlemesi" role="img"></div>
+          </article>
+        </section>
+
+        <!-- Ayarlar -->
+        <section class="block">
+          <div class="block__head">
+            <h2>Ayarlar</h2>
+          </div>
+          <article class="panel">
+            <h3>Üyelik bağlantısı</h3>
+            <p class="muted">Sitenin son sayfasındaki “Üye Ol” butonu bu adrese gider. Boş bırakılırsa “çok yakında” yazar.</p>
+            <form id="settings-form" class="inline-form">
+              <label class="sr-only" for="membership-url">Üyelik formu adresi</label>
+              <input id="membership-url" type="url" inputmode="url" placeholder="https://forms.gle/…" />
+              <button type="submit" class="btn btn--gold btn--sm">Kaydet</button>
+            </form>
+            <p id="settings-status" class="status" role="status"></p>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

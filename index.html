@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#060708" />
+    <title>Genç Bilişimciler Topluluğu</title>
+    <meta name="description" content="Üreten, araştıran ve paylaşan gençlerin bilişim topluluğu. Bizi tanıyın, fikrinizi paylaşın, aramıza katılın." />
+    <meta property="og:title" content="Genç Bilişimciler Topluluğu" />
+    <meta property="og:description" content="Bizimle birlikte geleceğe iz bırakmaya hazır mısınız?" />
+    <meta property="og:image" content="/og.jpg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand-mark" href="#hosgeldiniz" aria-label="Başa dön" data-i18n-aria="nav.top">
+        <img src="/favicon.svg" alt="" width="28" height="28" />
+        <span>GBT</span>
+      </a>
+      <div class="topbar__right">
+        <div class="lang-switch" role="group" aria-label="Dil / Language">
+          <button type="button" data-lang="tr" aria-pressed="true" lang="tr">TR</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+        </div>
+        <p class="counter" aria-hidden="true"><span id="counter-current">01</span> / 06</p>
+      </div>
+    </header>
+
+    <nav class="dots" aria-label="Bölümler" data-i18n-aria="nav.sections">
+      <a href="#hosgeldiniz" aria-label="Hoş geldiniz" data-i18n-aria="nav.s1"></a>
+      <a href="#stand" aria-label="Standımız" data-i18n-aria="nav.s2"></a>
+      <a href="#biz-kimiz" aria-label="Biz kimiz?" data-i18n-aria="nav.s3"></a>
+      <a href="#misyon-vizyon" aria-label="Misyon ve vizyon" data-i18n-aria="nav.s4"></a>
+      <a href="#oneriler" aria-label="Önerileriniz" data-i18n-aria="nav.s5"></a>
+      <a href="#uye-ol" aria-label="Üye ol" data-i18n-aria="nav.s6"></a>
+    </nav>
+
+    <main>
+      <!-- 1 · Hoş geldiniz -->
+      <section class="panel panel--left panel--cube-top" id="hosgeldiniz">
+        <div class="panel__content">
+          <p class="eyebrow" data-reveal>v1.0 — 2026</p>
+          <!-- Topluluk adı özel isimdir: İngilizce modda da Türkçe büyük harf kurallarıyla (İ) yazılır -->
+          <h1 class="brand-title" lang="tr" data-reveal style="--d: 1">
+            <span>Genç</span>
+            <span>Bilişimciler</span>
+            <span data-i18n="hero.name3">Topluluğu’na</span>
+          </h1>
+          <p class="welcome" data-reveal style="--d: 2" data-i18n="hero.welcome">Hoş geldiniz.</p>
+          <p class="lead" data-reveal style="--d: 3" data-i18n="hero.lead">
+            Üreten, araştıran ve paylaşan gençlerin buluşma noktası. Küpün içinde neler olduğunu görmek için kaydırın.
+          </p>
+        </div>
+        <a class="scroll-hint" href="#stand" aria-label="Sonraki bölüm" data-i18n-aria="nav.next">
+          <span data-i18n="hero.scroll">Kaydırın</span>
+          <i aria-hidden="true"></i>
+        </a>
+      </section>
+
+      <!-- 2 · Stand -->
+      <section class="panel panel--right panel--cube-top" id="stand">
+        <div class="panel__content">
+          <p class="eyebrow" data-reveal>
+            <span class="live-dot" aria-hidden="true"></span>
+            <span data-i18n="stand.eyebrow">Şu an buradasınız</span>
+          </p>
+          <h2 class="title" data-reveal style="--d: 1" data-i18n="stand.title">Şu anda standımızdasınız</h2>
+          <p class="lead" data-reveal style="--d: 2" data-i18n="stand.lead">
+            QR kodu okuttuğunuz an topluluğumuzun kapısından içeri adım attınız. Bu kısa yolculukta:
+          </p>
+          <ol class="steps">
+            <li data-reveal style="--d: 3">
+              <b data-i18n="stand.s1.title">Bizi tanıyın</b>
+              <span data-i18n="stand.s1.text">Kim olduğumuzu ve neden var olduğumuzu okuyun.</span>
+            </li>
+            <li data-reveal style="--d: 4">
+              <b data-i18n="stand.s2.title">Fikrinizi söyleyin</b>
+              <span data-i18n="stand.s2.text">Bir sonraki etkinlikte ne görmek istediğinizi yazın.</span>
+            </li>
+            <li data-reveal style="--d: 5">
+              <b data-i18n="stand.s3.title">Aramıza katılın</b>
+              <span data-i18n="stand.s3.text">Geleceğe birlikte iz bırakalım.</span>
+            </li>
+          </ol>
+          <p class="note" data-reveal style="--d: 6" data-i18n="stand.note">
+            Bir sorunuz mu var? Standdaki ekip arkadaşlarımıza çekinmeden sorun.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3 · Biz kimiz? -->
+      <section class="panel panel--center" id="biz-kimiz">
+        <div class="panel__content">
+          <p class="eyebrow" data-reveal data-i18n="who.eyebrow">Küpün içine giriyoruz</p>
+          <h2 class="title title--huge" data-reveal style="--d: 1" data-i18n="who.title">Biz kimiz?</h2>
+          <p class="lead lead--center" data-reveal style="--d: 2" data-i18n-html="who.lead">
+            Misyonumuz ne, vizyonumuz nereye bakıyor?<br />Cevabı bir kaydırma ötede.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4 · Misyon & Vizyon -->
+      <section class="panel panel--center panel--tall" id="misyon-vizyon">
+        <div class="panel__content panel__content--wide">
+          <p class="eyebrow" data-reveal data-i18n="mv.eyebrow">Biz kimiz?</p>
+          <p class="statement" data-reveal style="--d: 1" data-i18n-html="mv.statement">
+            Bilişim ve teknolojiye tutkuyla bağlı; <em>öğrenen, üreten ve paylaşan</em> öğrencilerin topluluğuyuz.
+          </p>
+          <div class="cards">
+            <article class="card" data-reveal style="--d: 2">
+              <h3 data-i18n="mv.mission.title">Misyonumuz</h3>
+              <p data-i18n="mv.mission.text">
+                Öğrencilerin akademik, teknik ve kişisel gelişimini desteklemek; teorik bilgiyi uygulamalı projeler,
+                araştırmalar ve sektör odaklı çalışmalarla pekiştirmek.
+              </p>
+            </article>
+            <article class="card" data-reveal style="--d: 3">
+              <h3 data-i18n="mv.vision.title">Vizyonumuz</h3>
+              <p data-i18n="mv.vision.text">
+                Yalnızca etkinlik düzenleyen değil; üreten, araştıran, yenilik geliştiren ve bilişim ekosistemine değer
+                katan sürdürülebilir bir topluluk olmak.
+              </p>
+            </article>
+            <article class="card" data-reveal style="--d: 4">
+              <h3 data-i18n="mv.gain.title">Size kazandırdıklarımız</h3>
+              <p data-i18n="mv.gain.text">
+                Takım çalışması, liderlik, proje yönetimi ve girişimcilik deneyimi; şirketler, kamu kurumları,
+                teknoparklar ve üniversitelerle kurduğumuz iş birlikleriyle sektörle buluşma fırsatı.
+              </p>
+            </article>
+          </div>
+          <div class="fields" data-reveal style="--d: 5">
+            <h3 data-i18n="mv.fields.title">Çalışma alanlarımız</h3>
+            <ul class="tags">
+              <li data-i18n="field.ai">Yapay Zekâ</li>
+              <li data-i18n="field.software">Yazılım Geliştirme</li>
+              <li data-i18n="field.security">Siber Güvenlik</li>
+              <li data-i18n="field.data">Veri Bilimi</li>
+              <li data-i18n="field.cloud">Bulut Bilişim</li>
+              <li data-i18n="field.vr">Sanal Gerçeklik</li>
+              <li data-i18n="field.autonomous">Otonom Sistemler</li>
+              <li data-i18n="field.iot">Nesnelerin İnterneti</li>
+              <li data-i18n="field.mobile">Mobil Uygulama</li>
+              <li data-i18n="field.web">Web Teknolojileri</li>
+              <li data-i18n="field.robotics">Robotik</li>
+              <li data-i18n="field.design">Dijital Tasarım</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · Öneriler -->
+      <section class="panel panel--left panel--form" id="oneriler">
+        <div class="panel__content">
+          <p class="eyebrow" data-reveal data-i18n="form.eyebrow">Söz sizde</p>
+          <h2 class="title" data-reveal style="--d: 1" data-i18n="form.title">Bir sonraki etkinliğimizde neler görmek istersiniz?</h2>
+
+          <form id="suggest-form" class="card form" data-reveal style="--d: 2" novalidate>
+            <fieldset>
+              <legend data-i18n="form.quick">Hızlıca seçin</legend>
+              <div class="chips" id="topic-chips"></div>
+            </fieldset>
+
+            <label for="s-message" data-i18n="form.messageLabel">Ya da kendi cümlelerinizle yazın</label>
+            <textarea
+              id="s-message"
+              name="message"
+              rows="3"
+              maxlength="1000"
+              placeholder="Örn. Yapay zekâ ile uygulamalı proje atölyesi…"
+              data-i18n-placeholder="form.placeholder"
+            ></textarea>
+            <p class="counter-inline"><span id="s-count">0</span> / 1000</p>
+
+            <label for="s-name">
+              <span data-i18n="form.nameLabel">Adınız</span>
+              <span class="optional" data-i18n="form.optional">(isteğe bağlı)</span>
+            </label>
+            <input id="s-name" name="name" type="text" maxlength="60" autocomplete="given-name" />
+
+            <div class="hp" aria-hidden="true">
+              <label>Web sitesi <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <button type="submit" class="btn btn--gold" data-i18n="form.submit">Gönder</button>
+            <p class="form-note">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5z" /></svg>
+              <span data-i18n="form.privacy">Yazdıklarınızı yalnızca topluluk yöneticileri görür.</span>
+            </p>
+            <p id="s-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div id="suggest-thanks" class="card thanks" hidden>
+            <h3 class="thanks__title" data-i18n="form.thanksTitle">Teşekkürler!</h3>
+            <p data-i18n="form.thanksText">Fikriniz bize ulaştı. Bir sonraki etkinliği birlikte şekillendiriyoruz.</p>
+            <button type="button" class="btn btn--ghost" id="suggest-again" data-i18n="form.again">Bir fikir daha ekle</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · Üye ol -->
+      <section class="panel panel--center panel--bottom" id="uye-ol">
+        <div class="panel__content">
+          <p class="eyebrow" data-reveal data-i18n="join.eyebrow">Son adım</p>
+          <h2 class="title" data-reveal style="--d: 1" data-i18n="join.title">Bizimle birlikte geleceğe iz bırakmaya hazır mısınız?</h2>
+          <p class="lead lead--center" data-reveal style="--d: 2" data-i18n="join.lead">
+            Projelerde yer alın, etkinlikleri birlikte tasarlayın, teknoloji dünyasında aktif rol alın.
+          </p>
+          <div class="cta" data-reveal style="--d: 3">
+            <a id="join-link" class="btn btn--gold btn--big" aria-disabled="true">Üyelik formu çok yakında</a>
+            <p id="join-note" class="note">Şimdilik standdaki ekibimize adınızı bırakabilirsiniz.</p>
+          </div>
+          <div class="contact" data-reveal style="--d: 4">
+            <p class="contact__label" data-i18n="join.follow">Bizi takip edin</p>
+            <div class="contact__links">
+              <a
+                class="social"
+                href="https://www.linkedin.com/company/gen%C3%A7-bili%C5%9Fimciler-%C3%B6%C4%9Frenci-toplulu%C4%9Fu"
+                target="_blank"
+                rel="noopener"
+                data-track="linkedin"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <path d="M8 10.5V17M8 7.5v.01M12 17v-3.5a2.5 2.5 0 0 1 5 0V17M12 10.5V17" />
+                </svg>
+                LinkedIn
+              </a>
+              <a
+                class="social"
+                href="https://www.instagram.com/tarsusuni.gncbilisim/"
+                target="_blank"
+                rel="noopener"
+                data-track="instagram"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M17.5 6.5v.01" />
+                </svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+          <footer class="footer" data-reveal style="--d: 5">
+            <span>© 2026 Genç Bilişimciler Topluluğu</span>
+            <a href="#hosgeldiniz" data-i18n="join.top">Başa dön ↑</a>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>GBT Stant Afişi</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/poster.ts"></script>
+  </head>
+  <body>
+    <div class="toolbar">
+      <div>
+        <strong>Stant afişi (A4)</strong>
+        <span>Yazdırma ekranında kağıt boyutu A4, kenar boşluğu “Yok”, “Arka plan grafikleri” açık olsun.</span>
+      </div>
+      <button type="button" id="print" disabled>Yazdır / PDF kaydet</button>
+    </div>
+
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <article class="sheet" id="sheet" hidden>
+      <div class="hero" role="img" aria-label="Genç Bilişimciler Topluluğu küp görseli"></div>
+
+      <div class="body">
+        <p class="eyebrow">Genç Bilişimciler Topluluğu’na</p>
+        <h1>Hoş geldiniz</h1>
+        <p class="lead">Telefonunuzun kamerasıyla okutun, küpün içine girin.</p>
+
+        <div class="qr-frame">
+          <div class="qr" id="qr"></div>
+        </div>
+
+        <ol class="steps">
+          <li><b>01</b><span>Kamerayı açın</span></li>
+          <li><b>02</b><span>QR kodu okutun</span></li>
+          <li><b>03</b><span>Kaydırarak keşfedin</span></li>
+        </ol>
+
+        <p class="en">Scan to explore — English available</p>
+      </div>
+
+      <footer class="foot">
+        <span id="host"></span>
+        <span>in / Genç Bilişimciler Öğrenci Topluluğu</span>
+        <span>@tarsusuni.gncbilisim</span>
+      </footer>
+    </article>
+  </body>
+</html>

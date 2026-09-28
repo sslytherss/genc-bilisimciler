@@ -1,0 +1,33 @@
+{
+  "name": "genc-bilisimciler",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Genç Bilişimciler Topluluğu tanıtım sitesi",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n web,api -c yellow,cyan \"vite\" \"node --watch --env-file-if-exists=.env server/index.ts\"",
+    "dev:lan": "concurrently -k -n web,api -c yellow,cyan \"vite --host\" \"node --watch --env-file-if-exists=.env server/index.ts\"",
+    "build": "tsc --noEmit && vite build",
+    "start": "node --env-file-if-exists=.env server/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/cinzel": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "express": "^5.2.1",
+    "qrcode": "^1.5.4",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.3",
+    "@types/qrcode": "^1.5.6",
+    "@types/three": "^0.186.0",
+    "concurrently": "^10.0.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  }
+}

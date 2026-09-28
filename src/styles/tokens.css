@@ -1,0 +1,153 @@
+/* Yazı tipleri kendi sunucumuzdan: ziyaretçi IP'si Google'a gitmez (KVKK), çevrimdışı ağda da çalışır.
+   Her dosya yalnızca gereken harf alt kümesini (Latin + Türkçe) indirir. */
+@import '@fontsource/cinzel/600.css';
+@import '@fontsource/cinzel/700.css';
+@import '@fontsource/cinzel/800.css';
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+:root {
+  color-scheme: dark;
+
+  --bg: #060708;
+  --surface: rgba(14, 14, 17, 0.72);
+  --surface-solid: #111114;
+  --ink: #f3ede2;
+  --ink-2: #c3bcae;
+  --muted: #8d8679;
+  --gold: #d8b36f;
+  --gold-light: #f2d9a2;
+  --gold-dark: #8a6a35;
+  --blue: #8fd3ff;
+  --danger: #ff8a7a;
+  --success: #9fe3b0;
+  --line: rgba(216, 179, 111, 0.22);
+  --line-strong: rgba(216, 179, 111, 0.5);
+
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius: 16px;
+  --gutter: clamp(16px, 5vw, 56px);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.gold-text {
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-dark) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: 600 15px/1 var(--font-body);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out),
+    background 0.2s,
+    opacity 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--gold {
+  color: #1b1408;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold) 60%, #b38a47);
+  box-shadow:
+    0 0 0 1px rgba(242, 217, 162, 0.35) inset,
+    0 10px 30px -10px rgba(216, 179, 111, 0.6);
+}
+
+.btn--gold:hover {
+  box-shadow:
+    0 0 0 1px rgba(242, 217, 162, 0.5) inset,
+    0 14px 40px -10px rgba(216, 179, 111, 0.8);
+}
+
+.btn--ghost {
+  color: var(--gold-light);
+  background: transparent;
+  border-color: var(--line-strong);
+}
+
+.btn--ghost:hover {
+  background: rgba(216, 179, 111, 0.08);
+}
+
+.btn[aria-disabled='true'],
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--ink);
+  font: 400 16px/1.5 var(--font-body);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(216, 179, 111, 0.18);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 88px;
+}
+
+::placeholder {
+  color: var(--muted);
+}
